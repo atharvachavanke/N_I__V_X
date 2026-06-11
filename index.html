@@ -1,0 +1,2017 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="NIVX — India's most trusted digital ownership ecosystem. Discover, verify, invest, learn, and grow through one intelligent financial platform.">
+<meta name="keywords" content="NIVX, digital ownership, financial intelligence, investment platform, India fintech, wealth management, financial education">
+<meta property="og:title" content="NIVX — Future of Digital Ownership">
+<meta property="og:description" content="NIVX is building a unified ecosystem where users can discover, verify, analyze, manage, invest in, learn about, and grow digital and real-world opportunities.">
+<meta property="og:type" content="website">
+<title>NIVX — Future of Digital Ownership</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a0f1e;
+    --navy-mid: #0d1428;
+    --navy-light: #111d3a;
+    --navy-surface: #162040;
+    --blue: #1e56c8;
+    --blue-bright: #2d6ef0;
+    --blue-pale: #3d82ff;
+    --gold: #c9a84c;
+    --gold-bright: #e0b955;
+    --gold-light: #f2d06b;
+    --green: #1aad6e;
+    --green-bright: #22c97e;
+    --white: #f4f6fb;
+    --white-dim: #b8c4da;
+    --white-muted: #7a8baa;
+    --border: rgba(255,255,255,0.07);
+    --border-mid: rgba(255,255,255,0.12);
+    --card-bg: rgba(22,32,64,0.7);
+    --card-bg-hover: rgba(30,44,82,0.85);
+    --font-display: 'Playfair Display', serif;
+    --font-body: 'Inter', sans-serif;
+    --transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+    --radius: 16px;
+    --radius-sm: 10px;
+    --shadow: 0 8px 48px rgba(0,0,0,0.45);
+    --shadow-card: 0 4px 32px rgba(0,0,0,0.3);
+  }
+
+  *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── SCROLLBAR ─── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--navy); }
+  ::-webkit-scrollbar-thumb { background: var(--navy-surface); border-radius: 3px; }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%; height: 68px;
+    background: rgba(10,15,30,0.88);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    transition: var(--transition);
+  }
+  nav.scrolled { background: rgba(10,15,30,0.97); }
+
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.5rem; font-weight: 800;
+    letter-spacing: 0.05em;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    cursor: pointer; text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex; align-items: center; gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--white-dim); font-size: 0.875rem; font-weight: 500;
+    text-decoration: none; letter-spacing: 0.02em;
+    transition: var(--transition); cursor: pointer;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--white); }
+
+  .nav-cta {
+    background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+    color: var(--navy) !important;
+    padding: 0.5rem 1.25rem; border-radius: 8px;
+    font-weight: 700 !important; font-size: 0.82rem !important;
+    transition: var(--transition) !important;
+    -webkit-text-fill-color: var(--navy) !important;
+  }
+  .nav-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+
+  .nav-hamburger {
+    display: none; flex-direction: column; gap: 5px;
+    cursor: pointer; padding: 4px;
+  }
+  .nav-hamburger span {
+    width: 24px; height: 2px;
+    background: var(--white-dim); border-radius: 2px;
+    transition: var(--transition);
+  }
+
+  .mobile-menu {
+    display: none; position: fixed; top: 68px; left: 0; right: 0;
+    background: rgba(10,15,30,0.98); backdrop-filter: blur(20px);
+    padding: 1.5rem 5%; flex-direction: column; gap: 1.2rem;
+    border-bottom: 1px solid var(--border); z-index: 999;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    color: var(--white-dim); text-decoration: none;
+    font-size: 1rem; font-weight: 500; cursor: pointer;
+    padding: 0.5rem 0; border-bottom: 1px solid var(--border);
+    transition: var(--transition);
+  }
+  .mobile-menu a:hover { color: var(--white); }
+
+  /* ─── PAGE SYSTEM ─── */
+  .page { display: none; }
+  .page.active { display: block; }
+  main { padding-top: 68px; min-height: 100vh; }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: calc(100vh - 68px);
+    display: flex; flex-direction: column; justify-content: center;
+    position: relative; overflow: hidden;
+    padding: 5rem 5% 4rem;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 50% 10%, rgba(30,86,200,0.18) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 85% 50%, rgba(201,168,76,0.1) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 15% 80%, rgba(26,173,110,0.07) 0%, transparent 60%);
+  }
+
+  .hero-grid {
+    position: absolute; inset: 0; z-index: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 20%, black 30%, transparent 80%);
+  }
+
+  .hero-content { position: relative; z-index: 1; max-width: 800px; }
+
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.3);
+    color: var(--gold-bright); font-size: 0.75rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 0.35rem 0.85rem; border-radius: 100px;
+    margin-bottom: 1.75rem;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-eyebrow::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--gold-bright);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%,100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  h1.hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 800; line-height: 1.1; letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s 0.15s ease both;
+  }
+  .hero-title .gold { color: var(--gold-bright); }
+  .hero-title .line2 { display: block; color: var(--white-dim); }
+
+  .hero-sub {
+    font-size: 1.1rem; color: var(--white-dim);
+    max-width: 580px; line-height: 1.75;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.6s 0.25s ease both;
+  }
+
+  .hero-actions {
+    display: flex; flex-wrap: wrap; gap: 1rem;
+    animation: fadeUp 0.6s 0.35s ease both;
+  }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+    color: var(--navy); font-weight: 700; font-size: 0.9rem;
+    padding: 0.85rem 1.8rem; border-radius: 10px;
+    text-decoration: none; border: none; cursor: pointer;
+    transition: var(--transition); letter-spacing: 0.01em;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,168,76,0.4); }
+
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: transparent;
+    border: 1px solid var(--border-mid);
+    color: var(--white-dim); font-weight: 600; font-size: 0.9rem;
+    padding: 0.85rem 1.8rem; border-radius: 10px;
+    text-decoration: none; cursor: pointer;
+    transition: var(--transition);
+  }
+  .btn-secondary:hover { border-color: var(--white-dim); color: var(--white); background: rgba(255,255,255,0.05); }
+
+  /* dashboard mockup */
+  .hero-dashboard {
+    position: relative; z-index: 1;
+    margin-top: 4rem;
+    animation: fadeUp 0.8s 0.5s ease both;
+  }
+  .dashboard-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-mid);
+    border-radius: var(--radius);
+    padding: 1.5rem 2rem;
+    backdrop-filter: blur(20px);
+    box-shadow: var(--shadow);
+    max-width: 900px;
+  }
+  .dash-row {
+    display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .dash-stat {
+    text-align: center;
+  }
+  .dash-stat .val {
+    font-size: 1.6rem; font-weight: 800;
+    font-family: var(--font-display);
+    color: var(--gold-bright);
+    display: block;
+  }
+  .dash-stat .lbl {
+    font-size: 0.72rem; color: var(--white-muted);
+    text-transform: uppercase; letter-spacing: 0.08em;
+  }
+  .dash-chart {
+    height: 120px; position: relative;
+    border-top: 1px solid var(--border); padding-top: 1rem;
+  }
+  .dash-chart canvas { width: 100% !important; }
+  .chart-labels {
+    display: flex; justify-content: space-between;
+    font-size: 0.7rem; color: var(--white-muted);
+    margin-top: 0.5rem;
+  }
+
+  /* ─── SECTIONS ─── */
+  section { padding: 5rem 5%; }
+  .section-label {
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--gold-bright);
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 700; line-height: 1.2; letter-spacing: -0.01em;
+    margin-bottom: 1rem;
+  }
+  .section-sub {
+    font-size: 1rem; color: var(--white-dim);
+    max-width: 560px; line-height: 1.75;
+  }
+  .section-header { margin-bottom: 3.5rem; }
+  .section-header.center { text-align: center; }
+  .section-header.center .section-sub { margin: 0 auto; }
+  .divider {
+    height: 1px; background: var(--border);
+    margin: 0 5%;
+  }
+
+  /* ─── CARDS ─── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px,1fr));
+    gap: 1.5rem;
+  }
+  .card-grid-3 { grid-template-columns: repeat(3,1fr); }
+  .card-grid-2 { grid-template-columns: repeat(2,1fr); }
+
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.75rem;
+    transition: var(--transition);
+    cursor: default;
+  }
+  .card:hover {
+    background: var(--card-bg-hover);
+    border-color: var(--border-mid);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card);
+  }
+  .card-icon {
+    width: 48px; height: 48px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; margin-bottom: 1.1rem;
+  }
+  .card-icon.blue { background: rgba(30,86,200,0.18); }
+  .card-icon.gold { background: rgba(201,168,76,0.18); }
+  .card-icon.green { background: rgba(26,173,110,0.18); }
+  .card-icon.purple { background: rgba(130,90,210,0.18); }
+
+  .card h3 {
+    font-size: 1.05rem; font-weight: 700;
+    margin-bottom: 0.5rem; letter-spacing: -0.01em;
+  }
+  .card p { font-size: 0.875rem; color: var(--white-dim); line-height: 1.65; }
+
+  /* ─── STATS BAND ─── */
+  .stats-band {
+    background: var(--navy-surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 3rem 5%;
+    display: grid; grid-template-columns: repeat(4,1fr);
+    gap: 2rem; text-align: center;
+  }
+  .stat-item .num {
+    font-family: var(--font-display);
+    font-size: 2.4rem; font-weight: 800;
+    color: var(--gold-bright); display: block; line-height: 1;
+    margin-bottom: 0.35rem;
+  }
+  .stat-item .desc {
+    font-size: 0.8rem; color: var(--white-muted);
+    text-transform: uppercase; letter-spacing: 0.08em;
+  }
+
+  /* ─── FEATURES LIST ─── */
+  .feature-row {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: center;
+    padding: 4rem 5%;
+  }
+  .feature-row.reverse { direction: rtl; }
+  .feature-row.reverse > * { direction: ltr; }
+
+  .feature-visual {
+    background: var(--card-bg);
+    border: 1px solid var(--border-mid);
+    border-radius: var(--radius);
+    padding: 2.5rem;
+    box-shadow: var(--shadow-card);
+    position: relative; overflow: hidden;
+  }
+  .feature-visual::before {
+    content: '';
+    position: absolute; top: -40px; right: -40px;
+    width: 160px; height: 160px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(30,86,200,0.15), transparent);
+  }
+
+  .feature-tag {
+    display: inline-block;
+    background: rgba(201,168,76,0.12);
+    border: 1px solid rgba(201,168,76,0.25);
+    color: var(--gold); font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.25rem 0.65rem; border-radius: 6px;
+    margin-bottom: 1rem;
+  }
+  .feature-h {
+    font-family: var(--font-display);
+    font-size: 1.6rem; font-weight: 700; line-height: 1.25;
+    margin-bottom: 1rem;
+  }
+  .feature-p {
+    color: var(--white-dim); font-size: 0.92rem; line-height: 1.75;
+    margin-bottom: 1.5rem;
+  }
+  .feature-list {
+    list-style: none; display: flex; flex-direction: column; gap: 0.6rem;
+  }
+  .feature-list li {
+    display: flex; align-items: flex-start; gap: 0.65rem;
+    font-size: 0.875rem; color: var(--white-dim);
+  }
+  .feature-list li::before {
+    content: '✓'; color: var(--green-bright); font-weight: 800;
+    flex-shrink: 0; margin-top: 2px;
+  }
+
+  /* ─── ECOSYSTEM ─── */
+  .ecosystem-container {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 0; padding: 3rem 5%;
+  }
+  .eco-node {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 0; width: 100%; max-width: 700px;
+  }
+  .eco-item {
+    display: flex; align-items: center; gap: 1.5rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem 2rem; width: 100%;
+    transition: var(--transition);
+  }
+  .eco-item:hover {
+    background: var(--card-bg-hover);
+    border-color: var(--border-mid);
+    transform: translateX(6px);
+  }
+  .eco-icon {
+    width: 42px; height: 42px; flex-shrink: 0;
+    border-radius: 10px; display: flex; align-items: center;
+    justify-content: center; font-size: 1.3rem;
+    background: rgba(30,86,200,0.18);
+  }
+  .eco-connector {
+    width: 2px; height: 36px;
+    background: linear-gradient(180deg, var(--blue-bright), var(--blue));
+    margin: 0 auto; position: relative;
+  }
+  .eco-connector::after {
+    content: ''; position: absolute;
+    bottom: -5px; left: 50%; transform: translateX(-50%);
+    width: 0; height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid var(--blue);
+  }
+  .eco-text h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.2rem; }
+  .eco-text p { font-size: 0.78rem; color: var(--white-muted); }
+
+  /* ─── COMPARISON TABLE ─── */
+  .compare-table {
+    width: 100%; border-collapse: collapse;
+    background: var(--card-bg); border-radius: var(--radius);
+    overflow: hidden; font-size: 0.88rem;
+  }
+  .compare-table thead th {
+    padding: 1rem 1.5rem; text-align: left;
+    background: var(--navy-surface);
+    border-bottom: 1px solid var(--border);
+    font-weight: 700; font-size: 0.8rem; letter-spacing: 0.05em;
+    text-transform: uppercase; color: var(--white-muted);
+  }
+  .compare-table thead th:first-child { width: 40%; }
+  .compare-table thead th.highlight-col {
+    color: var(--gold-bright); background: rgba(201,168,76,0.08);
+  }
+  .compare-table tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: var(--transition);
+  }
+  .compare-table tbody tr:last-child { border-bottom: none; }
+  .compare-table tbody tr:hover { background: rgba(255,255,255,0.02); }
+  .compare-table td { padding: 0.9rem 1.5rem; color: var(--white-dim); }
+  .compare-table td:first-child { color: var(--white); font-weight: 500; }
+  .compare-table td.highlight-col { color: var(--gold-bright); font-weight: 600; }
+  .check { color: var(--green-bright); font-weight: 800; }
+  .cross { color: #ff5c5c; }
+
+  /* ─── TIMELINE ─── */
+  .timeline { position: relative; padding: 0 5% 0 calc(5% + 2rem); }
+  .timeline::before {
+    content: '';
+    position: absolute; left: calc(5% + 0.875rem); top: 0; bottom: 0;
+    width: 2px; background: linear-gradient(180deg, var(--blue), var(--gold), var(--green));
+  }
+  .tl-item {
+    position: relative; margin-bottom: 2.5rem;
+  }
+  .tl-dot {
+    position: absolute; left: -2.6rem; top: 0.3rem;
+    width: 18px; height: 18px; border-radius: 50%;
+    background: var(--gold); border: 3px solid var(--navy);
+    box-shadow: 0 0 0 3px rgba(201,168,76,0.3);
+  }
+  .tl-item h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.35rem; }
+  .tl-item p { font-size: 0.875rem; color: var(--white-dim); }
+
+  /* ─── PROBLEM ─── */
+  .problem-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr));
+    gap: 1.5rem;
+  }
+  .problem-card {
+    background: rgba(255,60,60,0.05);
+    border: 1px solid rgba(255,60,60,0.15);
+    border-radius: var(--radius); padding: 1.5rem;
+  }
+  .problem-card h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .problem-card p { font-size: 0.85rem; color: var(--white-dim); line-height: 1.6; }
+  .problem-num {
+    font-family: var(--font-display); font-size: 2rem;
+    font-weight: 800; color: rgba(255,90,90,0.3);
+    line-height: 1; margin-bottom: 0.75rem;
+  }
+
+  .solution-card {
+    background: rgba(26,173,110,0.05);
+    border: 1px solid rgba(26,173,110,0.15);
+    border-radius: var(--radius); padding: 1.5rem;
+    transition: var(--transition);
+  }
+  .solution-card:hover { transform: translateY(-4px); }
+  .solution-num {
+    font-family: var(--font-display); font-size: 2rem;
+    font-weight: 800; color: rgba(26,173,110,0.35);
+    line-height: 1; margin-bottom: 0.75rem;
+  }
+  .solution-card h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .solution-card p { font-size: 0.85rem; color: var(--white-dim); line-height: 1.6; }
+
+  /* ─── FAQ ─── */
+  .faq-list { max-width: 780px; margin: 0 auto; }
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+  }
+  .faq-q {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 0; gap: 1rem;
+    font-weight: 600; font-size: 0.95rem;
+    transition: var(--transition);
+  }
+  .faq-q:hover { color: var(--gold-bright); }
+  .faq-arrow {
+    flex-shrink: 0; width: 22px; height: 22px;
+    border-radius: 50%; background: var(--navy-surface);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem; transition: var(--transition);
+  }
+  .faq-item.open .faq-arrow { transform: rotate(180deg); background: var(--gold); color: var(--navy); }
+  .faq-a {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.35s ease, padding 0.35s ease;
+    font-size: 0.875rem; color: var(--white-dim); line-height: 1.75;
+  }
+  .faq-item.open .faq-a { max-height: 300px; padding-bottom: 1.25rem; }
+
+  /* ─── CONTACT ─── */
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1.4fr; gap: 4rem; align-items: start;
+  }
+  .contact-info-card {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 2rem;
+  }
+  .contact-info-item {
+    display: flex; align-items: flex-start; gap: 1rem;
+    padding: 1.1rem 0; border-bottom: 1px solid var(--border);
+  }
+  .contact-info-item:last-child { border-bottom: none; }
+  .ci-icon {
+    width: 38px; height: 38px; border-radius: 9px;
+    background: rgba(30,86,200,0.18); flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+  }
+  .ci-text .label {
+    font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--white-muted); margin-bottom: 0.15rem;
+  }
+  .ci-text a, .ci-text span {
+    font-size: 0.88rem; color: var(--white-dim);
+    text-decoration: none; transition: var(--transition);
+  }
+  .ci-text a:hover { color: var(--gold-bright); }
+
+  .social-links {
+    display: flex; gap: 0.75rem; margin-top: 1.5rem;
+  }
+  .social-btn {
+    display: flex; align-items: center; gap: 0.5rem;
+    background: var(--navy-surface); border: 1px solid var(--border);
+    color: var(--white-dim); font-size: 0.78rem; font-weight: 600;
+    padding: 0.5rem 1rem; border-radius: 8px;
+    text-decoration: none; transition: var(--transition);
+  }
+  .social-btn:hover { border-color: var(--border-mid); color: var(--white); }
+
+  /* ─── FORM ─── */
+  .form-card {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 2.5rem;
+  }
+  .form-group { margin-bottom: 1.25rem; }
+  .form-group label {
+    display: block; font-size: 0.8rem; font-weight: 600;
+    color: var(--white-dim); margin-bottom: 0.5rem;
+    text-transform: uppercase; letter-spacing: 0.07em;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%; background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 10px; padding: 0.8rem 1rem;
+    color: var(--white); font-family: var(--font-body); font-size: 0.9rem;
+    transition: var(--transition); outline: none;
+    resize: vertical;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--blue-bright); background: rgba(30,86,200,0.07);
+  }
+  .form-group select option { background: var(--navy-mid); }
+  .form-group textarea { min-height: 130px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  #formSuccess {
+    display: none; padding: 1rem 1.25rem;
+    background: rgba(26,173,110,0.12); border: 1px solid rgba(26,173,110,0.3);
+    border-radius: 10px; color: var(--green-bright); font-weight: 600;
+    font-size: 0.9rem; margin-top: 1rem; text-align: center;
+  }
+
+  /* ─── FOUNDER ─── */
+  .founder-section {
+    display: grid; grid-template-columns: 1fr 1.8fr;
+    gap: 4rem; align-items: center;
+    padding: 5rem 5%;
+  }
+  .founder-avatar {
+    width: 220px; height: 220px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--navy-surface), var(--blue));
+    border: 4px solid var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-size: 5rem; font-weight: 800;
+    color: var(--gold-bright); margin: 0 auto;
+    box-shadow: 0 0 60px rgba(201,168,76,0.2);
+  }
+  .founder-name {
+    font-family: var(--font-display);
+    font-size: 2.5rem; font-weight: 800; margin-bottom: 0.25rem;
+  }
+  .founder-role {
+    color: var(--gold-bright); font-size: 0.9rem;
+    font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  .founder-quote {
+    font-size: 1.2rem; font-style: italic; color: var(--white-dim);
+    line-height: 1.7; margin-bottom: 1.5rem;
+    border-left: 3px solid var(--gold); padding-left: 1.25rem;
+  }
+  .founder-bio {
+    font-size: 0.92rem; color: var(--white-dim); line-height: 1.8;
+  }
+
+  /* ─── VISION ─── */
+  .vision-hero {
+    min-height: 70vh; display: flex; align-items: center;
+    position: relative; overflow: hidden;
+    padding: 6rem 5%;
+    background:
+      radial-gradient(ellipse 80% 50% at 50% 0%, rgba(30,86,200,0.22) 0%, transparent 70%);
+  }
+  .vision-pillar {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 2rem;
+    text-align: center; transition: var(--transition);
+  }
+  .vision-pillar:hover { transform: translateY(-6px); border-color: var(--border-mid); }
+  .vision-pillar .vp-icon {
+    font-size: 2.5rem; margin-bottom: 1rem; display: block;
+  }
+  .vision-pillar h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .vision-pillar p { font-size: 0.82rem; color: var(--white-dim); line-height: 1.65; }
+
+  .manifesto {
+    background: var(--navy-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 3.5rem;
+    text-align: center; max-width: 760px; margin: 0 auto;
+  }
+  .manifesto p {
+    font-family: var(--font-display); font-size: 1.35rem;
+    line-height: 1.8; color: var(--white-dim);
+  }
+  .manifesto p strong { color: var(--white); }
+  .manifesto p .gold { color: var(--gold-bright); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--navy-mid);
+    border-top: 1px solid var(--border);
+    padding: 4rem 5% 2rem;
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem; margin-bottom: 3rem;
+  }
+  .footer-brand p {
+    font-size: 0.85rem; color: var(--white-muted);
+    max-width: 280px; line-height: 1.7; margin-top: 0.75rem;
+  }
+  .footer-col h5 {
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--white-muted);
+    margin-bottom: 1rem;
+  }
+  .footer-col a {
+    display: block; color: var(--white-dim); font-size: 0.85rem;
+    text-decoration: none; margin-bottom: 0.55rem;
+    cursor: pointer; transition: var(--transition);
+  }
+  .footer-col a:hover { color: var(--white); }
+
+  .footer-bottom {
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid var(--border); padding-top: 1.5rem;
+    font-size: 0.78rem; color: var(--white-muted);
+  }
+  .footer-socials { display: flex; gap: 1rem; }
+  .footer-socials a {
+    display: flex; align-items: center; justify-content: center;
+    width: 34px; height: 34px; border-radius: 8px;
+    background: var(--navy-surface); border: 1px solid var(--border);
+    color: var(--white-dim); font-size: 1rem;
+    text-decoration: none; transition: var(--transition);
+  }
+  .footer-socials a:hover { border-color: var(--gold); color: var(--gold-bright); }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* ─── BADGE/TAG ─── */
+  .badge {
+    display: inline-block; padding: 0.25rem 0.65rem;
+    border-radius: 6px; font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 0.07em; text-transform: uppercase;
+  }
+  .badge-blue { background: rgba(30,86,200,0.18); color: var(--blue-pale); }
+  .badge-gold { background: rgba(201,168,76,0.18); color: var(--gold-bright); }
+  .badge-green { background: rgba(26,173,110,0.18); color: var(--green-bright); }
+
+  /* ─── WAITLIST BANNER ─── */
+  .waitlist-banner {
+    background: linear-gradient(135deg, var(--blue), #0e3fa0);
+    border-radius: var(--radius); padding: 3rem;
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .waitlist-banner::before {
+    content: '';
+    position: absolute; top: -60px; right: -60px;
+    width: 200px; height: 200px; border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+  }
+  .waitlist-banner h3 {
+    font-family: var(--font-display); font-size: 1.8rem;
+    font-weight: 800; margin-bottom: 0.75rem;
+  }
+  .waitlist-banner p {
+    color: rgba(255,255,255,0.75); margin-bottom: 1.75rem; font-size: 0.95rem;
+  }
+  .waitlist-form {
+    display: flex; gap: 0.75rem; max-width: 460px;
+    margin: 0 auto;
+  }
+  .waitlist-form input {
+    flex: 1; background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 10px; padding: 0.8rem 1.1rem;
+    color: var(--white); font-size: 0.9rem; outline: none;
+    font-family: var(--font-body);
+    transition: var(--transition);
+  }
+  .waitlist-form input:focus { background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.4); }
+  .waitlist-form input::placeholder { color: rgba(255,255,255,0.45); }
+
+  .page-header {
+    padding: 4rem 5% 2rem;
+    background: linear-gradient(180deg, rgba(30,86,200,0.07) 0%, transparent 100%);
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* pill tabs */
+  .tabs {
+    display: flex; gap: 0.5rem; flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+  .tab-btn {
+    background: var(--navy-surface); border: 1px solid var(--border);
+    color: var(--white-dim); font-size: 0.82rem; font-weight: 600;
+    padding: 0.5rem 1.1rem; border-radius: 100px;
+    cursor: pointer; transition: var(--transition);
+  }
+  .tab-btn.active, .tab-btn:hover {
+    background: rgba(30,86,200,0.18); border-color: var(--blue-bright); color: var(--white);
+  }
+
+  /* mini chart in card */
+  .mini-chart { width: 100%; height: 60px; margin-top: 1rem; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 1024px) {
+    .card-grid-3 { grid-template-columns: repeat(2,1fr); }
+    .feature-row { grid-template-columns: 1fr; gap: 2.5rem; }
+    .feature-row.reverse { direction: ltr; }
+    .founder-section { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
+    .founder-quote { border-left: none; border-top: 3px solid var(--gold); padding-left: 0; padding-top: 1rem; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .stats-band { grid-template-columns: repeat(2,1fr); }
+    .form-row { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+    .hero { padding: 3rem 5% 3rem; }
+    h1.hero-title { font-size: 2.2rem; }
+    .dash-row { grid-template-columns: repeat(2,1fr); }
+    .card-grid-3 { grid-template-columns: 1fr; }
+    .card-grid-2 { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+    .stats-band { grid-template-columns: repeat(2,1fr); }
+    .waitlist-form { flex-direction: column; }
+    section { padding: 3.5rem 5%; }
+    .manifesto { padding: 2rem; }
+    .manifesto p { font-size: 1.05rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════
+     NAVIGATION
+═══════════════════════════════════ -->
+<nav id="mainNav">
+  <a class="nav-logo" onclick="navigateTo('home')">NIVX</a>
+  <ul class="nav-links">
+    <li><a onclick="navigateTo('home')">Home</a></li>
+    <li><a onclick="navigateTo('about')">About</a></li>
+    <li><a onclick="navigateTo('problem')">Problem</a></li>
+    <li><a onclick="navigateTo('features')">Features</a></li>
+    <li><a onclick="navigateTo('ecosystem')">Ecosystem</a></li>
+    <li><a onclick="navigateTo('why')">Why NIVX</a></li>
+    <li><a onclick="navigateTo('vision')">Vision</a></li>
+    <li><a onclick="navigateTo('founder')">Founder</a></li>
+    <li><a onclick="navigateTo('faq')">FAQ</a></li>
+    <li><a onclick="navigateTo('contact')" class="nav-cta">Contact</a></li>
+  </ul>
+  <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a onclick="navigateTo('home');toggleMenu()">Home</a>
+  <a onclick="navigateTo('about');toggleMenu()">About</a>
+  <a onclick="navigateTo('problem');toggleMenu()">Problem</a>
+  <a onclick="navigateTo('features');toggleMenu()">Features</a>
+  <a onclick="navigateTo('ecosystem');toggleMenu()">Ecosystem</a>
+  <a onclick="navigateTo('why');toggleMenu()">Why NIVX</a>
+  <a onclick="navigateTo('vision');toggleMenu()">Vision</a>
+  <a onclick="navigateTo('founder');toggleMenu()">Founder</a>
+  <a onclick="navigateTo('faq');toggleMenu()">FAQ</a>
+  <a onclick="navigateTo('contact');toggleMenu()">Contact</a>
+</div>
+
+<main id="mainContent">
+
+<!-- ═══════════════════════════════════
+     HOME PAGE
+═══════════════════════════════════ -->
+<div id="page-home" class="page active">
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Now Building India's Wealth OS</div>
+      <h1 class="hero-title">
+        Future of<br><span class="gold">Digital Ownership</span>
+        <span class="line2">Starts Here.</span>
+      </h1>
+      <p class="hero-sub">NIVX is building a unified ecosystem where you can discover, verify, analyze, manage, invest in, learn about, and grow digital and real-world financial opportunities — through one intelligent platform.</p>
+      <div class="hero-actions">
+        <button class="btn-primary" onclick="document.getElementById('waitlistEmail').focus(); navigateTo('home');">
+          <span>Join the Waitlist</span> →
+        </button>
+        <button class="btn-secondary" onclick="navigateTo('features')">
+          Explore Platform
+        </button>
+      </div>
+    </div>
+
+    <div class="hero-dashboard">
+      <div class="dashboard-card">
+        <div class="dash-row">
+          <div class="dash-stat"><span class="val">₹2.4L</span><span class="lbl">Portfolio Value</span></div>
+          <div class="dash-stat"><span class="val" style="color:var(--green-bright)">+18.4%</span><span class="lbl">Total Returns</span></div>
+          <div class="dash-stat"><span class="val" style="color:var(--blue-pale)">47</span><span class="lbl">Verified Assets</span></div>
+          <div class="dash-stat"><span class="val" style="color:var(--gold-bright)">94</span><span class="lbl">Trust Score</span></div>
+        </div>
+        <div class="dash-chart">
+          <canvas id="heroChart" height="100"></canvas>
+          <div class="chart-labels">
+            <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="stats-band">
+    <div class="stat-item"><span class="num">500M+</span><span class="desc">Potential Indian Users</span></div>
+    <div class="stat-item"><span class="num">₹350T</span><span class="desc">Indian Wealth Market</span></div>
+    <div class="stat-item"><span class="num">8</span><span class="desc">Integrated Verticals</span></div>
+    <div class="stat-item"><span class="num">1</span><span class="desc">Unified Platform</span></div>
+  </div>
+
+  <!-- What is NIVX -->
+  <section>
+    <div class="section-header">
+      <div class="section-label">What We're Building</div>
+      <h2 class="section-title">One Platform.<br>Your Complete Financial Life.</h2>
+      <p class="section-sub">Today your money lives in scattered apps, your investments in separate portals, your education on random websites. NIVX unifies all of it.</p>
+    </div>
+    <div class="card-grid fade-in">
+      <div class="card">
+        <div class="card-icon blue">🔍</div>
+        <h3>Smart Discovery</h3>
+        <p>AI-powered opportunity scanning across stocks, mutual funds, real estate, and alternative assets tailored to your risk profile and goals.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon gold">✅</div>
+        <h3>Proof Mode</h3>
+        <p>Industry-first verification layer. Every claim, every asset, every return — independently verified and transparently displayed.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon green">📈</div>
+        <h3>Intelligent Investing</h3>
+        <p>Research, analyze, and invest across asset classes from a single interface backed by real-time data and AI-driven insights.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon blue">🔐</div>
+        <h3>Security Vault</h3>
+        <p>Military-grade encryption for your digital ownership documents, investment proofs, and sensitive financial records.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon gold">🎓</div>
+        <h3>Education Hub</h3>
+        <p>Structured financial literacy programs from basics to advanced investing, delivered contextually within your actual portfolio.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon green">🌐</div>
+        <h3>Community Intelligence</h3>
+        <p>Verified investor discussions, shared insights, and collective intelligence — without noise, anonymity abuse, or misinformation.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- How it works -->
+  <section>
+    <div class="section-header center">
+      <div class="section-label">How NIVX Works</div>
+      <h2 class="section-title">From Discovery to Wealth Growth</h2>
+      <p class="section-sub">A seamless journey through every stage of your financial life, all within one intelligent ecosystem.</p>
+    </div>
+    <div class="ecosystem-container fade-in">
+      <div class="eco-node">
+        <div class="eco-item">
+          <div class="eco-icon">👤</div>
+          <div class="eco-text"><h4>You Join NIVX</h4><p>Complete your financial profile and goals in minutes</p></div>
+        </div>
+        <div class="eco-connector"></div>
+        <div class="eco-item">
+          <div class="eco-icon">🔍</div>
+          <div class="eco-text"><h4>AI Discovers Opportunities</h4><p>Personalized opportunities across all asset classes surface for you</p></div>
+        </div>
+        <div class="eco-connector"></div>
+        <div class="eco-item">
+          <div class="eco-icon">📊</div>
+          <div class="eco-text"><h4>Deep Analysis</h4><p>Research tools, risk calculators, and peer comparisons at your fingertips</p></div>
+        </div>
+        <div class="eco-connector"></div>
+        <div class="eco-item">
+          <div class="eco-icon">✅</div>
+          <div class="eco-text"><h4>Verification via Proof Mode</h4><p>Every asset and claim independently verified before you commit</p></div>
+        </div>
+        <div class="eco-connector"></div>
+        <div class="eco-item">
+          <div class="eco-icon">💰</div>
+          <div class="eco-text"><h4>Invest with Confidence</h4><p>Execute investments knowing every data point has been authenticated</p></div>
+        </div>
+        <div class="eco-connector"></div>
+        <div class="eco-item">
+          <div class="eco-icon">📈</div>
+          <div class="eco-text"><h4>Track & Grow</h4><p>Real-time portfolio tracking, automated rebalancing suggestions, and performance reports</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Waitlist -->
+  <section style="padding: 3rem 5%;">
+    <div class="waitlist-banner fade-in">
+      <div class="badge badge-gold" style="margin-bottom:1rem;">Early Access</div>
+      <h3>Be Among the First to Experience NIVX</h3>
+      <p>Join thousands of Indians who are ready to take control of their financial future. Early access members get priority onboarding, exclusive features, and founding member benefits.</p>
+      <div class="waitlist-form">
+        <input type="email" id="waitlistEmail" placeholder="Enter your email address">
+        <button class="btn-primary" onclick="joinWaitlist()">Join Waitlist</button>
+      </div>
+      <div id="waitlistMsg" style="margin-top:1rem;color:var(--green-bright);font-weight:600;display:none;">
+        ✓ You're on the list! We'll reach out soon.
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ═══════════════════════════════════
+     ABOUT PAGE
+═══════════════════════════════════ -->
+<div id="page-about" class="page">
+  <div class="page-header">
+    <div class="section-label">About NIVX</div>
+    <h1 class="section-title" style="font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem);font-weight:800;">Building India's Most Trusted<br>Digital Ownership Ecosystem</h1>
+    <p class="section-sub" style="margin-top:1rem;">NIVX is not just another fintech app. It is a complete operating system for your financial life.</p>
+  </div>
+
+  <section>
+    <div class="feature-row fade-in">
+      <div>
+        <div class="feature-tag">What We Are</div>
+        <h2 class="feature-h">A Unified Financial Intelligence Platform for Every Indian</h2>
+        <p class="feature-p">NIVX stands for a new paradigm in personal finance. In a world where the average Indian uses 6+ apps to manage their money — each with different interfaces, different data, different trust levels — NIVX brings everything together.</p>
+        <p class="feature-p">We are building the infrastructure for digital financial ownership: a place where your assets are verified, your opportunities are discovered, your education is personalized, and your wealth grows through intelligent guidance.</p>
+        <ul class="feature-list">
+          <li>Unified dashboard for all financial activity</li>
+          <li>AI-powered recommendations personalized to your life goals</li>
+          <li>Verification systems that eliminate fraud and misinformation</li>
+          <li>Education that teaches while you invest</li>
+          <li>Community intelligence from verified investors</li>
+        </ul>
+      </div>
+      <div class="feature-visual">
+        <div style="text-align:center;">
+          <div style="font-size:3.5rem;margin-bottom:1.5rem;">🏛️</div>
+          <h3 style="font-family:var(--font-display);font-size:1.5rem;margin-bottom:1rem;">Our Core Philosophy</h3>
+          <div style="display:flex;flex-direction:column;gap:1rem;text-align:left;">
+            <div style="background:rgba(255,255,255,0.04);border-radius:10px;padding:1rem;">
+              <div style="font-weight:700;margin-bottom:0.35rem;">🎯 Ownership</div>
+              <div style="font-size:0.82rem;color:var(--white-dim);">Every Indian deserves to truly own and understand their financial assets, not just hold them in opaque systems.</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.04);border-radius:10px;padding:1rem;">
+              <div style="font-weight:700;margin-bottom:0.35rem;">🔍 Transparency</div>
+              <div style="font-size:0.82rem;color:var(--white-dim);">Trust is built through radical transparency. Every verified claim, every data source, visible and auditable.</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.04);border-radius:10px;padding:1rem;">
+              <div style="font-weight:700;margin-bottom:0.35rem;">📈 Growth</div>
+              <div style="font-size:0.82rem;color:var(--white-dim);">Wealth grows when intelligence, opportunity, and action converge. NIVX is that convergence point.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section>
+    <div class="section-header center">
+      <div class="section-label">Our Mission & Vision</div>
+      <h2 class="section-title">Why We Exist</h2>
+    </div>
+    <div class="card-grid card-grid-2 fade-in">
+      <div class="card" style="border-color:rgba(30,86,200,0.3);">
+        <div style="font-size:2rem;margin-bottom:1rem;">🎯</div>
+        <h3>Mission</h3>
+        <p>To democratize financial intelligence and digital ownership for every Indian — making wealth creation accessible, transparent, and secure regardless of economic background or financial literacy.</p>
+      </div>
+      <div class="card" style="border-color:rgba(201,168,76,0.3);">
+        <div style="font-size:2rem;margin-bottom:1rem;">🌟</div>
+        <h3>Vision</h3>
+        <p>A world where every Indian has a personal wealth operating system that knows their goals, discovers their opportunities, verifies their assets, and guides their financial journey intelligently from first rupee to generational wealth.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--navy-surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+    <div class="section-header center">
+      <div class="section-label">Our Values</div>
+      <h2 class="section-title">What Drives NIVX</h2>
+    </div>
+    <div class="card-grid fade-in">
+      <div class="card"><div class="card-icon gold">🛡️</div><h3>Trust First</h3><p>Every feature, every decision, every design choice is evaluated through the lens of: does this increase user trust?</p></div>
+      <div class="card"><div class="card-icon blue">💡</div><h3>Intelligence at Core</h3><p>AI isn't a feature at NIVX. It is the foundation. Every layer of the platform is powered by financial intelligence.</p></div>
+      <div class="card"><div class="card-icon green">🌱</div><h3>Growth for All</h3><p>Financial growth should not be restricted to the already-wealthy. NIVX is designed for every Indian, at every stage.</p></div>
+      <div class="card"><div class="card-icon gold">🔓</div><h3>Radical Transparency</h3><p>We operate on the principle that users who can see everything make better decisions. No black boxes at NIVX.</p></div>
+      <div class="card"><div class="card-icon blue">⚡</div><h3>Relentless Innovation</h3><p>India's financial ecosystem is evolving rapidly. NIVX stays ahead by building future-proof infrastructure today.</p></div>
+      <div class="card"><div class="card-icon green">🤝</div><h3>Community Power</h3><p>Collective intelligence, when verified and curated, is more powerful than any single algorithm. We build for communities.</p></div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════════════════════
+     PROBLEM PAGE
+═══════════════════════════════════ -->
+<div id="page-problem" class="page">
+  <div class="page-header">
+    <div class="section-label">The Problem</div>
+    <h1 class="section-title" style="font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem);font-weight:800;">India's Broken Financial Landscape</h1>
+    <p class="section-sub" style="margin-top:1rem;">Millions of Indians want to build wealth. The system makes it unnecessarily hard. Here's why.</p>
+  </div>
+
+  <section>
+    <div class="section-header">
+      <div class="section-label">Current State</div>
+      <h2 class="section-title">7 Critical Problems Holding India Back</h2>
+    </div>
+    <div class="problem-grid fade-in">
+      <div class="problem-card"><div class="problem-num">01</div><h4>Fragmented Ecosystem</h4><p>The average Indian investor uses 6–8 separate apps — Zerodha, INDmoney, CAMS, NPS portal, bank apps. Each app has different data, different interfaces, and no unified picture exists.</p></div>
+      <div class="problem-card"><div class="problem-num">02</div><h4>Crisis of Trust</h4><p>From WhatsApp investment scams to fraudulent advisors, Indians lose thousands of crores annually to financial fraud. There's no universal verification layer for investment claims.</p></div>
+      <div class="problem-card"><div class="problem-num">03</div><h4>Poor Financial Education</h4><p>Less than 27% of Indians are financially literate. The education that exists is scattered, generic, and disconnected from real investment decisions.</p></div>
+      <div class="problem-card"><div class="problem-num">04</div><h4>Complex Investing</h4><p>Investing in equities, mutual funds, bonds, REITs, and alternatives each require separate accounts, separate KYC, and entirely separate mental models.</p></div>
+      <div class="problem-card"><div class="problem-num">05</div><h4>Opportunity Blindness</h4><p>Millions of quality investment opportunities go undiscovered because there's no intelligent discovery layer. Most Indians invest in only what they've heard of through word of mouth.</p></div>
+      <div class="problem-card"><div class="problem-num">06</div><h4>Information Overload</h4><p>Between business news, research reports, broker recommendations, and social media tips — Indians are drowning in unfiltered, often contradictory financial information.</p></div>
+      <div class="problem-card"><div class="problem-num">07</div><h4>Security Vulnerabilities</h4><p>Critical financial documents — demat account details, insurance policies, property papers — are stored in email inboxes, WhatsApp chats, or paper. Exposed to theft and loss.</p></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section>
+    <div class="section-header center">
+      <div class="section-label">The NIVX Solution</div>
+      <h2 class="section-title">Every Problem, Solved by Design</h2>
+      <p class="section-sub">NIVX was built with each of these pain points as a design constraint, not an afterthought.</p>
+    </div>
+    <div class="problem-grid fade-in">
+      <div class="solution-card"><div class="solution-num">01</div><h4>Unified Wealth Dashboard</h4><p>One login, one interface for all your investments — equities, MFs, insurance, real estate, alternative assets. Complete financial picture, always.</p></div>
+      <div class="solution-card"><div class="solution-num">02</div><h4>Proof Mode Verification</h4><p>Industry-first verification layer that independently validates investment claims, advisor credentials, and platform returns before they reach you.</p></div>
+      <div class="solution-card"><div class="solution-num">03</div><h4>Contextual Education Hub</h4><p>Learn exactly what you need, exactly when you need it — integrated within your actual investment workflow, not separate courses you never finish.</p></div>
+      <div class="solution-card"><div class="solution-num">04</div><h4>Single Investment Gateway</h4><p>One KYC, one account, access to all asset classes. Research, analyze, and invest in any instrument through one seamless interface.</p></div>
+      <div class="solution-card"><div class="solution-num">05</div><h4>AI-Powered Discovery</h4><p>Personalized opportunity discovery engine that surfaces investments matching your goals, risk profile, and financial situation — before someone else tells you about them.</p></div>
+      <div class="solution-card"><div class="solution-num">06</div><h4>Intelligent Signal Filter</h4><p>AI processes thousands of data points daily and surfaces only what matters for your portfolio — eliminating noise and information overload.</p></div>
+      <div class="solution-card"><div class="solution-num">07</div><h4>Security Vault</h4><p>Encrypted, backed-up, and accessible financial document storage with granular access controls. Your financial records, permanently safe.</p></div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════════════════════
+     FEATURES PAGE
+═══════════════════════════════════ -->
+<div id="page-features" class="page">
+  <div class="page-header">
+    <div class="section-label">Platform Features</div>
+    <h1 class="section-title" style="font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem);font-weight:800;">Everything You Need to<br>Build Wealth Intelligently</h1>
+    <p class="section-sub" style="margin-top:1rem;">Eight integrated verticals, one platform. Each feature designed for the Indian financial context.</p>
+  </div>
+
+  <!-- Feature 1: AI Intelligence -->
+  <div class="feature-row fade-in" style="padding:4rem 5%;">
+    <div>
+      <div class="feature-tag">AI Financial Intelligence</div>
+      <h2 class="feature-h">Your Personal Financial Analyst, Always On</h2>
+      <p class="feature-p">NIVX's AI engine processes market data, your portfolio composition, macroeconomic signals, and personal financial goals to deliver insights no human advisor could match at scale.</p>
+      <ul class="feature-list">
+        <li>Real-time portfolio health scoring and risk alerts</li>
+        <li>Personalized investment recommendations based on verified data</li>
+        <li>Market opportunity discovery tuned to your risk tolerance</li>
+        <li>Predictive alerts for portfolio rebalancing needs</li>
+        <li>Natural language financial queries — ask anything</li>
+        <li>Tax optimization suggestions across asset classes</li>
+      </ul>
+    </div>
+    <div class="feature-visual">
+      <div style="background:rgba(30,86,200,0.08);border-radius:10px;padding:1.5rem;margin-bottom:1rem;">
+        <div style="font-size:0.75rem;color:var(--blue-pale);font-weight:700;margin-bottom:0.75rem;">🤖 AI INSIGHT ENGINE</div>
+        <div style="font-size:0.85rem;color:var(--white-dim);line-height:1.7;font-style:italic;">"Based on your portfolio, Nifty 50 index funds are underweight by 12%. Current valuations suggest gradual accumulation over the next 3 months could improve long-term returns by an estimated 2.1%."</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+        <div style="background:rgba(255,255,255,0.04);border-radius:8px;padding:1rem;text-align:center;"><div style="font-size:1.5rem;font-weight:800;color:var(--green-bright);">94</div><div style="font-size:0.7rem;color:var(--white-muted);">Portfolio Score</div></div>
+        <div style="background:rgba(255,255,255,0.04);border-radius:8px;padding:1rem;text-align:center;"><div style="font-size:1.5rem;font-weight:800;color:var(--gold-bright);">12</div><div style="font-size:0.7rem;color:var(--white-muted);">Active Insights</div></div>
+        <div style="background:rgba(255,255,255,0.04);border-radius:8px;padding:1rem;text-align:center;"><div style="font-size:1.5rem;font-weight:800;color:var(--blue-pale);">3</div><div style="font-size:0.7rem;color:var(--white-muted);">Opportunities Found</div></div>
+        <div style="background:rgba(255,255,255,0.04);border-radius:8px;padding:1rem;text-align:center;"><div style="font-size:1.5rem;font-weight:800;color:var(--white);">Low</div><div style="font-size:0.7rem;color:var(--white-muted);">Risk Alerts</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Feature 2: Proof Mode -->
+  <div class="feature-row reverse fade-in" style="padding:4rem 5%;">
+    <div class="feature-visual">
+      <div style="margin-bottom:1rem;">
+        <div style="font-size:0.75rem;color:var(--gold);font-weight:700;letter-spacing:0.1em;margin-bottom:1rem;">✅ VERIFICATION STATUS</div>
+        <div style="display:flex;flex-direction:column;gap:0.75rem;">
+          <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(26,173,110,0.08);border:1px solid rgba(26,173,110,0.2);border-radius:8px;padding:0.75rem 1rem;">
+            <span style="font-size:0.85rem;">Company Registration</span>
+            <span style="color:var(--green-bright);font-weight:700;font-size:0.8rem;">✅ VERIFIED</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(26,173,110,0.08);border:1px solid rgba(26,173,110,0.2);border-radius:8px;padding:0.75rem 1rem;">
+            <span style="font-size:0.85rem;">SEBI Registration</span>
+            <span style="color:var(--green-bright);font-weight:700;font-size:0.8rem;">✅ VERIFIED</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(26,173,110,0.08);border:1px solid rgba(26,173,110,0.2);border-radius:8px;padding:0.75rem 1rem;">
+            <span style="font-size:0.85rem;">Claimed Returns</span>
+            <span style="color:var(--green-bright);font-weight:700;font-size:0.8rem;">✅ VERIFIED</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,90,90,0.08);border:1px solid rgba(255,90,90,0.2);border-radius:8px;padding:0.75rem 1rem;">
+            <span style="font-size:0.85rem;">Advisor Credential</span>
+            <span style="color:#ff5c5c;font-weight:700;font-size:0.8rem;">❌ FAILED</span>
+          </div>
+        </div>
+      </div>
+      <div style="background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.2);border-radius:8px;padding:0.85rem 1rem;">
+        <div style="font-size:0.75rem;color:var(--gold-bright);font-weight:700;">⚠️ NIVX PROOF ALERT: 1 verification failed — review before investing.</div>
+      </div>
+    </div>
+    <div>
+      <div class="feature-tag">Proof Mode</div>
+      <h2 class="feature-h">Trust Shouldn't Require Faith</h2>
+      <p class="feature-p">Proof Mode is NIVX's flagship verification system — the first of its kind in Indian fintech. Before you invest a single rupee, every material claim about an opportunity is independently verified against authoritative sources.</p>
+      <ul class="feature-list">
+        <li>Regulatory registration verification (SEBI, RBI, IRDAI)</li>
+        <li>Historical returns validation against audited records</li>
+        <li>Advisor credential authentication</li>
+        <li>Company incorporation and legal standing checks</li>
+        <li>Red flag alerts for suspicious patterns</li>
+        <li>Transparent audit trail for every verification</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Feature 3: Investment -->
+  <div class="feature-row fade-in" style="padding:4rem 5%;">
+    <div>
+      <div class="feature-tag">Investment Marketplace</div>
+      <h2 class="feature-h">Every Asset Class. One Gateway.</h2>
+      <p class="feature-p">Stop managing separate accounts for equity, mutual funds, bonds, and alternatives. NIVX consolidates your entire investment universe into one intelligent marketplace where you research, compare, and invest seamlessly.</p>
+      <ul class="feature-list">
+        <li>Direct mutual fund investments (zero commission)</li>
+        <li>Equity research and stock analysis tools</li>
+        <li>Fixed income and bond marketplace</li>
+        <li>Alternative investments — REITs, InvITs, SGBs</li>
+        <li>IPO discovery and application management</li>
+        <li>Cross-asset portfolio rebalancing recommendations</li>
+      </ul>
+    </div>
+    <div class="feature-visual">
+      <div style="font-size:0.75rem;color:var(--white-muted);font-weight:700;letter-spacing:0.08em;margin-bottom:1rem;">ASSET ALLOCATION</div>
+      <div style="display:flex;flex-direction:column;gap:0.5rem;">
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:0.8rem;margin-bottom:0.25rem;"><span>Equity</span><span style="color:var(--gold-bright);">45%</span></div>
+          <div style="height:8px;background:rgba(255,255,255,0.08);border-radius:4px;"><div style="height:100%;width:45%;background:linear-gradient(90deg,var(--blue),var(--blue-bright));border-radius:4px;"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:0.8rem;margin-bottom:0.25rem;"><span>Mutual Funds</span><span style="color:var(--gold-bright);">30%</span></div>
+          <div style="height:8px;background:rgba(255,255,255,0.08);border-radius:4px;"><div style="height:100%;width:30%;background:linear-gradient(90deg,var(--gold),var(--gold-bright));border-radius:4px;"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:0.8rem;margin-bottom:0.25rem;"><span>Fixed Income</span><span style="color:var(--gold-bright);">15%</span></div>
+          <div style="height:8px;background:rgba(255,255,255,0.08);border-radius:4px;"><div style="height:100%;width:15%;background:linear-gradient(90deg,var(--green),var(--green-bright));border-radius:4px;"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:0.8rem;margin-bottom:0.25rem;"><span>Alternatives</span><span style="color:var(--gold-bright);">10%</span></div>
+          <div style="height:8px;background:rgba(255,255,255,0.08);border-radius:4px;"><div style="height:100%;width:10%;background:rgba(130,90,210,0.8);border-radius:4px;"></div></div>
+        </div>
+      </div>
+      <div style="margin-top:1.5rem;background:rgba(26,173,110,0.08);border:1px solid rgba(26,173,110,0.2);border-radius:8px;padding:0.85rem 1rem;font-size:0.82rem;color:var(--white-dim);">
+        📊 AI Suggestion: Consider adding 5% SGBs to hedge against inflation.
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Features grid: smaller cards -->
+  <section>
+    <div class="section-header center">
+      <div class="section-label">More Capabilities</div>
+      <h2 class="section-title">Every Tool You Need</h2>
+    </div>
+    <div class="card-grid fade-in">
+      <div class="card"><div class="card-icon gold">🔐</div><h3>Security Vault</h3><p>AES-256 encrypted storage for demat statements, insurance policies, property documents, and all financial records. Accessible anywhere, secured everywhere.</p></div>
+      <div class="card"><div class="card-icon blue">📊</div><h3>Analytics & Reports</h3><p>Automated monthly and annual performance reports. XIRR calculations, benchmark comparisons, tax reports, and capital gains statements generated automatically.</p></div>
+      <div class="card"><div class="card-icon green">🎓</div><h3>Education Hub</h3><p>250+ lessons from investing basics to advanced derivatives strategy. Integrated with your portfolio so you learn from what you own.</p></div>
+      <div class="card"><div class="card-icon blue">👥</div><h3>Community Intelligence</h3><p>Verified investor forums with reputation-weighted insights. No anonymous tips. Every participant's track record is visible and auditable.</p></div>
+      <div class="card"><div class="card-icon gold">📱</div><h3>Real-Time Tracking</h3><p>Live portfolio valuation across all assets. Custom watchlists, price alerts, and news feeds filtered to your holdings and interests.</p></div>
+      <div class="card"><div class="card-icon green">🎯</div><h3>Goal-Based Planning</h3><p>Define your financial goals — retirement, home, education, travel. NIVX builds an investment roadmap and tracks your progress automatically.</p></div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════════════════════
+     ECOSYSTEM PAGE
+═══════════════════════════════════ -->
+<div id="page-ecosystem" class="page">
+  <div class="page-header">
+    <div class="section-label">The NIVX Ecosystem</div>
+    <h1 class="section-title" style="font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem);font-weight:800;">Eight Verticals.<br>One Unified Platform.</h1>
+    <p class="section-sub" style="margin-top:1rem;">NIVX connects every dimension of your financial life into one coherent, intelligent ecosystem.</p>
+  </div>
+
+  <section>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem;" class="fade-in">
+      <div class="card" style="border-color:rgba(30,86,200,0.3);">
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">
+          <div class="card-icon blue" style="margin:0;">🔍</div>
+          <div><span class="badge badge-blue">Vertical 1</span><h3 style="margin:0;margin-top:0.25rem;">Discovery Engine</h3></div>
+        </div>
+        <p>AI-curated investment opportunities surfaced from equity markets, mutual fund universe, IPO pipeline, bond market, REITs, and alternative assets.</p>
+        <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);font-size:0.78rem;color:var(--white-muted);">Connects to → Analysis Engine, Investment Gateway</div>
+      </div>
+      <div class="card" style="border-color:rgba(201,168,76,0.3);">
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">
+          <div class="card-icon gold" style="margin:0;">✅</div>
+          <div><span class="badge badge-gold">Vertical 2</span><h3 style="margin:0;margin-top:0.25rem;">Proof Mode</h3></div>
+        </div>
+        <p>Verification infrastructure that validates regulatory registrations, audited returns, advisor credentials, and company legitimacy in real time.</p>
+        <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);font-size:0.78rem;color:var(--white-muted);">Connects to → All Verticals (Trust Layer)</div>
+      </div>
+      <div class="card" style="border-color:rgba(26,173,110,0.3);">
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">
+          <div class="card-icon green" style="margin:0;">💰</div>
+          <div><span class="badge badge-green">Vertical 3</span><h3 style="margin:0;margin-top:0.25rem;">Investment Gateway</h3></div>
+        </div>
+        <p>Unified investment execution layer for mutual funds, equity, bonds, IPOs, and alternative assets. Single KYC, single interface, all asset classes.</p>
+        <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);font-size:0.78rem;color:var(--white-muted);">Connects to → Portfolio Tracker, Analytics</div>
+      </div>
+      <div class="card" style="border-color:rgba(30,86,200,0.3);">
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">
+          <div class="card-icon blue" style="margin:0;">📊</div>
+          <div><span class="badge badge-blue">Vertical 4</span><h3 style="margin:0;margin-top:0.25rem;">Analytics & Insights</h3></div>
+        </div>
+        <p>Deep portfolio analytics including XIRR tracking, benchmark comparison, risk-adjusted returns, tax projections, and automated financial reports.</p>
+        <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);font-size:0.78rem;color:var(--white-muted);">Connects to → AI Engine, Reporting Layer</div>
+      </div>
+      <div class="card" style="border-color:rgba(201,168,76,0.3);">
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">
+          <div class="card-icon gold" style="margin:0;">🔐</div>
+          <div><span class="badge badge-gold">Vertical 5</span><h3 style="margin:0;margin-top:0.25rem;">Security Vault</h3></div>
+        </div>
+        <p>Encrypted digital vault for all financial ownership documents — demat statements, insurance policies, property papers, investment certificates.</p>
+        <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);font-size:0.78rem;color:var(--white-muted);">Connects to → Proof Mode, Portfolio Tracker</div>
+      </div>
+      <div class="card" style="border-color:rgba(26,173,110,0.3);">
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">
+          <div class="card-icon green" style="margin:0;">🎓</div>
+          <div><span class="badge badge-green">Vertical 6</span><h3 style="margin:0;margin-top:0.25rem;">Education Hub</h3></div>
+        </div>
+        <p>Contextual financial literacy delivered inline with portfolio activity. Structured learning paths from first SIP to advanced equity analysis.</p>
+        <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);font-size:0.78rem;color:var(--white-muted);">Connects to → Discovery Engine, Community</div>
+      </div>
+      <div class="card" style="border-color:rgba(130,90,210,0.3);">
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">
+          <div class="card-icon purple" style="margin:0;">👥</div>
+          <div><span class="badge" style="background:rgba(130,90,210,0.15);color:#b08af5;">Vertical 7</span><h3 style="margin:0;margin-top:0.25rem;">Community</h3></div>
+        </div>
+        <p>Verified investor community with reputation scores tied to actual portfolio performance. Insights, discussions, and shared research — no anonymous noise.</p>
+        <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);font-size:0.78rem;color:var(--white-muted);">Connects to → Proof Mode, Education Hub</div>
+      </div>
+      <div class="card" style="border-color:rgba(30,86,200,0.3);">
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">
+          <div class="card-icon blue" style="margin:0;">🤖</div>
+          <div><span class="badge badge-blue">Vertical 8</span><h3 style="margin:0;margin-top:0.25rem;">AI Intelligence Layer</h3></div>
+        </div>
+        <p>The intelligence backbone powering all other verticals. Processes market data, user behavior, and external signals to deliver personalized financial intelligence.</p>
+        <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);font-size:0.78rem;color:var(--white-muted);">Connects to → All Verticals (Intelligence Layer)</div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--navy-surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+    <div class="section-header center">
+      <div class="section-label">Ecosystem Flow</div>
+      <h2 class="section-title">How the Ecosystem Flows</h2>
+    </div>
+    <div class="ecosystem-container fade-in">
+      <div class="eco-node">
+        <div class="eco-item"><div class="eco-icon">👤</div><div class="eco-text"><h4>User Onboards</h4><p>Single KYC, financial profile, goal setting</p></div></div>
+        <div class="eco-connector"></div>
+        <div class="eco-item"><div class="eco-icon">🤖</div><div class="eco-text"><h4>AI Personalizes</h4><p>Intelligence engine configures all verticals to your profile</p></div></div>
+        <div class="eco-connector"></div>
+        <div class="eco-item"><div class="eco-icon">🔍</div><div class="eco-text"><h4>Discovery Activates</h4><p>Personalized opportunity feed surfaces relevant investments</p></div></div>
+        <div class="eco-connector"></div>
+        <div class="eco-item"><div class="eco-icon">✅</div><div class="eco-text"><h4>Proof Mode Verifies</h4><p>Every opportunity validated before you see it</p></div></div>
+        <div class="eco-connector"></div>
+        <div class="eco-item"><div class="eco-icon">🎓</div><div class="eco-text"><h4>Education Contextualizes</h4><p>Learn about the specific investment type inline</p></div></div>
+        <div class="eco-connector"></div>
+        <div class="eco-item"><div class="eco-icon">💰</div><div class="eco-text"><h4>Investment Executes</h4><p>One-click execution across any verified asset class</p></div></div>
+        <div class="eco-connector"></div>
+        <div class="eco-item"><div class="eco-icon">📊</div><div class="eco-text"><h4>Analytics Track</h4><p>Real-time performance, automated reports, tax prep</p></div></div>
+        <div class="eco-connector"></div>
+        <div class="eco-item"><div class="eco-icon">🔐</div><div class="eco-text"><h4>Vault Secures</h4><p>Documents encrypted and stored automatically</p></div></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════════════════════
+     WHY NIVX PAGE
+═══════════════════════════════════ -->
+<div id="page-why" class="page">
+  <div class="page-header">
+    <div class="section-label">Why NIVX</div>
+    <h1 class="section-title" style="font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem);font-weight:800;">Why the World Needs NIVX</h1>
+    <p class="section-sub" style="margin-top:1rem;">Every great platform exists because no alternative was good enough. Here's why NIVX is different.</p>
+  </div>
+
+  <section>
+    <div class="section-header center">
+      <div class="section-label">The Comparison</div>
+      <h2 class="section-title">NIVX vs The Market</h2>
+    </div>
+    <div style="overflow-x:auto;" class="fade-in">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Capability</th>
+            <th class="highlight-col">NIVX</th>
+            <th>Zerodha / Groww</th>
+            <th>INDmoney</th>
+            <th>Traditional Advisor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Unified Multi-Asset Dashboard</td><td class="highlight-col"><span class="check">✓ Complete</span></td><td>Partial</td><td>Partial</td><td><span class="cross">✗</span></td></tr>
+          <tr><td>AI-Powered Discovery</td><td class="highlight-col"><span class="check">✓ Deep AI</span></td><td>Basic filters</td><td>Partial</td><td><span class="cross">✗</span></td></tr>
+          <tr><td>Independent Verification (Proof Mode)</td><td class="highlight-col"><span class="check">✓ Unique</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td></tr>
+          <tr><td>Contextual Financial Education</td><td class="highlight-col"><span class="check">✓ Integrated</span></td><td>Basic articles</td><td><span class="cross">✗</span></td><td>Manual</td></tr>
+          <tr><td>Encrypted Document Vault</td><td class="highlight-col"><span class="check">✓ Built-in</span></td><td><span class="cross">✗</span></td><td>Partial</td><td><span class="cross">✗</span></td></tr>
+          <tr><td>Verified Community Intelligence</td><td class="highlight-col"><span class="check">✓ Verified</span></td><td>Unverified</td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td></tr>
+          <tr><td>All Asset Classes</td><td class="highlight-col"><span class="check">✓ All 6+</span></td><td>Limited</td><td>Limited</td><td>Varies</td></tr>
+          <tr><td>Tax Automation</td><td class="highlight-col"><span class="check">✓ Auto</span></td><td>Partial</td><td>Partial</td><td>Manual</td></tr>
+          <tr><td>Goal-Based Planning</td><td class="highlight-col"><span class="check">✓ AI-Driven</span></td><td>Basic</td><td>Basic</td><td>Manual</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section>
+    <div class="section-header center">
+      <div class="section-label">Differentiators</div>
+      <h2 class="section-title">What Makes NIVX Genuinely Different</h2>
+    </div>
+    <div class="card-grid fade-in">
+      <div class="card" style="border-color:rgba(201,168,76,0.3);">
+        <div style="font-size:2.5rem;margin-bottom:1rem;">🔑</div>
+        <h3>Proof Mode is Unique</h3>
+        <p>No other platform in India independently verifies investment claims and advisor credentials. Proof Mode is a structural moat that builds trust no competitor can replicate quickly.</p>
+      </div>
+      <div class="card" style="border-color:rgba(30,86,200,0.3);">
+        <div style="font-size:2.5rem;margin-bottom:1rem;">🧠</div>
+        <h3>Truly Unified Intelligence</h3>
+        <p>Most platforms aggregate data. NIVX makes it intelligent. AI that understands your complete financial picture — not just one asset class — enables advice competitors cannot match.</p>
+      </div>
+      <div class="card" style="border-color:rgba(26,173,110,0.3);">
+        <div style="font-size:2.5rem;margin-bottom:1rem;">🎓</div>
+        <h3>Education That Compounds</h3>
+        <p>Learning embedded in actual investment workflows means users become financially literate while doing — not studying in isolation. This drives better decisions and deeper platform engagement.</p>
+      </div>
+      <div class="card" style="border-color:rgba(201,168,76,0.3);">
+        <div style="font-size:2.5rem;margin-bottom:1rem;">🌐</div>
+        <h3>Community with Accountability</h3>
+        <p>Verified identities with public track records transform community from noise into signal. Reputation-weighted insights create a trusted financial intelligence network that grows more valuable with every user.</p>
+      </div>
+      <div class="card" style="border-color:rgba(30,86,200,0.3);">
+        <div style="font-size:2.5rem;margin-bottom:1rem;">📱</div>
+        <h3>Built for India</h3>
+        <p>NIVX is designed for Indian regulatory structures, Indian investment products (SGBs, NPS, PPF), Indian user behaviors, and Indian tax laws. Not a Western product adapted for India.</p>
+      </div>
+      <div class="card" style="border-color:rgba(26,173,110,0.3);">
+        <div style="font-size:2.5rem;margin-bottom:1rem;">⚡</div>
+        <h3>Network Effects at Scale</h3>
+        <p>The more users NIVX has, the more valuable the verified community becomes, the better the AI models get, and the stronger Proof Mode's data network becomes. Classic flywheel built for scale.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════════════════════
+     VISION PAGE
+═══════════════════════════════════ -->
+<div id="page-vision" class="page">
+  <div class="vision-hero fade-in">
+    <div style="max-width:800px;">
+      <div class="section-label">Our Vision</div>
+      <h1 style="font-family:var(--font-display);font-size:clamp(2.5rem,5vw,4rem);font-weight:800;line-height:1.1;margin-bottom:1.5rem;">
+        Building the Future<br>of <span style="color:var(--gold-bright);">Digital Ownership</span>
+      </h1>
+      <p style="font-size:1.15rem;color:var(--white-dim);line-height:1.8;max-width:620px;">We believe every Indian deserves a financial operating system that is as sophisticated as their ambitions — regardless of whether they were born wealthy or are building wealth from scratch.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="manifesto fade-in">
+      <p>
+        <strong>Financial wealth is not a privilege.</strong> It is the output of intelligent decisions made consistently over time. Today, those decisions are harder than they need to be — because the tools are fragmented, the information is unverified, the education is absent, and the opportunities are hidden.
+        <br><br>
+        <span class="gold">NIVX exists to fix this.</span>
+        <br><br>
+        We are building the infrastructure for a new era of digital financial ownership — where every Indian can discover the right opportunities, trust the information they receive, learn as they invest, and grow wealth with confidence.
+        <br><br>
+        <strong>This is not just an app. It is the operating system for your financial future.</strong>
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-header center">
+      <div class="section-label">The Future We're Building</div>
+      <h2 class="section-title">Six Pillars of Financial Transformation</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.5rem;" class="fade-in">
+      <div class="vision-pillar">
+        <span class="vp-icon">💡</span>
+        <h3>Financial Empowerment</h3>
+        <p>Every Indian empowered with institutional-grade financial tools and intelligence, regardless of wealth or background.</p>
+      </div>
+      <div class="vision-pillar">
+        <span class="vp-icon">🌐</span>
+        <h3>Radical Accessibility</h3>
+        <p>Investment opportunities and financial education accessible in every language, at every income level, from any device.</p>
+      </div>
+      <div class="vision-pillar">
+        <span class="vp-icon">🔍</span>
+        <h3>Opportunity Discovery</h3>
+        <p>No quality investment opportunity should go undiscovered because someone lacked access to the right network or information.</p>
+      </div>
+      <div class="vision-pillar">
+        <span class="vp-icon">🎓</span>
+        <h3>Universal Financial Literacy</h3>
+        <p>A financially literate population makes better individual decisions and builds a more resilient national economy.</p>
+      </div>
+      <div class="vision-pillar">
+        <span class="vp-icon">🛡️</span>
+        <h3>Absolute Security</h3>
+        <p>Financial information and documents secured with the same rigor as national infrastructure, accessible only to their owners.</p>
+      </div>
+      <div class="vision-pillar">
+        <span class="vp-icon">🌱</span>
+        <h3>Generational Wealth</h3>
+        <p>Helping Indian families build wealth that compounds across generations, not just within one lifetime.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-header">
+      <div class="section-label">The Roadmap</div>
+      <h2 class="section-title">Building in Phases</h2>
+    </div>
+    <div class="timeline fade-in">
+      <div class="tl-item"><div class="tl-dot"></div><h4>Phase 1 — Foundation: Proof Mode MVP</h4><p>Launch verification infrastructure. Build trust layer. Establish regulatory compliance. Onboard early users through Proof Mode as the anchor product.</p></div>
+      <div class="tl-item"><div class="tl-dot" style="background:var(--blue-bright);"></div><h4>Phase 2 — Intelligence: AI & Analytics</h4><p>Deploy AI discovery engine. Launch portfolio analytics. Build education hub. Introduce community layer with verified identities.</p></div>
+      <div class="tl-item"><div class="tl-dot" style="background:var(--green-bright);"></div><h4>Phase 3 — Marketplace: Investment Gateway</h4><p>Obtain SEBI registration. Launch mutual fund and equity investment interfaces. Integrate fixed income. Open security vault to all users.</p></div>
+      <div class="tl-item"><div class="tl-dot" style="background:var(--white-dim);"></div><h4>Phase 4 — Ecosystem: Full Platform</h4><p>All 8 verticals operational. Full API partner network. Enterprise and advisor products. Expand beyond Tier 1 cities. Regional language support.</p></div>
+      <div class="tl-item"><div class="tl-dot" style="background:var(--gold-light);"></div><h4>Phase 5 — Scale: National Wealth OS</h4><p>NIVX operating as India's de facto personal wealth operating system. 10M+ verified users. Partnerships with leading financial institutions. IPO readiness.</p></div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════════════════════
+     FOUNDER PAGE
+═══════════════════════════════════ -->
+<div id="page-founder" class="page">
+  <div class="page-header">
+    <div class="section-label">Leadership</div>
+    <h1 class="section-title" style="font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem);font-weight:800;">The Founder</h1>
+  </div>
+
+  <div class="founder-section fade-in">
+    <div>
+      <div class="founder-avatar">A</div>
+    </div>
+    <div>
+      <div class="founder-name">Atharva Chavhanke</div>
+      <div class="founder-role">Founder & CEO, NIVX</div>
+      <div class="founder-quote">"Financial intelligence should not be a privilege. Every Indian deserves the tools to discover opportunity, verify truth, and build wealth with confidence. That is why I'm building NIVX."</div>
+      <p class="founder-bio">Atharva Chavhanke is the founder and CEO of NIVX, building India's most ambitious unified financial ecosystem. With a deep conviction that the current fragmentation in Indian personal finance is a solvable problem, he set out to build a platform that brings together discovery, verification, investment, education, analytics, security, and community into one coherent, intelligent experience.</p>
+      <p class="founder-bio" style="margin-top:1rem;">NIVX is his answer to a financial system that has long favored the already-informed, the already-wealthy, and the already-connected. His vision is simple and audacious: build a platform that gives every Indian an unfair advantage in building their financial future.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:0.75rem;margin-top:1.75rem;">
+        <a href="https://www.linkedin.com/in/atharva-chavhanke" target="_blank" class="social-btn">
+          <span>in</span> LinkedIn
+        </a>
+        <a href="https://www.instagram.com/nivx2026" target="_blank" class="social-btn">
+          <span>📷</span> Instagram
+        </a>
+        <a href="https://youtube.com/@nivx-i9q" target="_blank" class="social-btn">
+          <span>▶</span> YouTube
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <section>
+    <div class="section-header center">
+      <div class="section-label">Philosophy</div>
+      <h2 class="section-title">The Builder's Creed</h2>
+    </div>
+    <div class="card-grid card-grid-3 fade-in">
+      <div class="card" style="text-align:center;">
+        <div style="font-size:2.5rem;margin-bottom:1rem;">🎯</div>
+        <h3>Build with Purpose</h3>
+        <p>Every feature in NIVX exists because it solves a real problem for a real Indian user. There are no features at NIVX that exist for appearance alone.</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div style="font-size:2.5rem;margin-bottom:1rem;">🔭</div>
+        <h3>Think in Decades</h3>
+        <p>NIVX is not being built for the next funding round. It is being built to become enduring financial infrastructure that India will rely on for generations.</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div style="font-size:2.5rem;margin-bottom:1rem;">🛡️</div>
+        <h3>Trust is Everything</h3>
+        <p>In financial services, trust is not a marketing message — it is the product itself. Proof Mode was the first thing built, because without trust, nothing else matters.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:2rem 5% 4rem;">
+    <div class="waitlist-banner fade-in">
+      <h3 style="margin-bottom:0.5rem;">Reach Out to Atharva Directly</h3>
+      <p style="margin-bottom:1.5rem;">For investor inquiries, partnership discussions, or media opportunities.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:0.75rem;justify-content:center;">
+        <a href="mailto:atharvachavanke@gmail.com" class="btn-primary" style="-webkit-text-fill-color:var(--navy);">✉️ Send Email</a>
+        <button class="btn-secondary" onclick="navigateTo('contact')" style="color:white;border-color:rgba(255,255,255,0.3);">Contact Page →</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════════════════════
+     FAQ PAGE
+═══════════════════════════════════ -->
+<div id="page-faq" class="page">
+  <div class="page-header">
+    <div class="section-label">FAQ</div>
+    <h1 class="section-title" style="font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem);font-weight:800;">Frequently Asked Questions</h1>
+    <p class="section-sub" style="margin-top:1rem;">Everything you need to know about NIVX and the platform we're building.</p>
+  </div>
+
+  <section>
+    <div class="tabs">
+      <button class="tab-btn active" onclick="filterFaq('all',this)">All</button>
+      <button class="tab-btn" onclick="filterFaq('platform',this)">Platform</button>
+      <button class="tab-btn" onclick="filterFaq('security',this)">Security</button>
+      <button class="tab-btn" onclick="filterFaq('investment',this)">Investing</button>
+      <button class="tab-btn" onclick="filterFaq('ai',this)">AI</button>
+      <button class="tab-btn" onclick="filterFaq('education',this)">Education</button>
+    </div>
+    <div class="faq-list" id="faqList">
+      <!-- FAQs inserted by JS -->
+    </div>
+  </section>
+
+  <section style="padding:2rem 5% 4rem;">
+    <div class="waitlist-banner fade-in" style="background:linear-gradient(135deg,var(--navy-surface),var(--navy-light));">
+      <h3>Still Have Questions?</h3>
+      <p>Our team is happy to answer anything we haven't covered above.</p>
+      <button class="btn-primary" onclick="navigateTo('contact')">Contact Us →</button>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════════════════════
+     CONTACT PAGE
+═══════════════════════════════════ -->
+<div id="page-contact" class="page">
+  <div class="page-header">
+    <div class="section-label">Get in Touch</div>
+    <h1 class="section-title" style="font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem);font-weight:800;">Let's Build Something<br>Extraordinary Together</h1>
+    <p class="section-sub" style="margin-top:1rem;">Investors, partners, media, or anyone who wants to be part of India's financial transformation.</p>
+  </div>
+
+  <section>
+    <div class="contact-grid fade-in">
+      <div>
+        <div class="contact-info-card">
+          <div class="contact-info-item">
+            <div class="ci-icon">📱</div>
+            <div class="ci-text">
+              <div class="label">Phone</div>
+              <a href="tel:+917028654722">+91 7028654722</a>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="ci-icon">✉️</div>
+            <div class="ci-text">
+              <div class="label">Email</div>
+              <a href="mailto:atharvachavanke@gmail.com">atharvachavanke@gmail.com</a>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="ci-icon">in</div>
+            <div class="ci-text">
+              <div class="label">LinkedIn</div>
+              <a href="https://www.linkedin.com/in/atharva-chavhanke" target="_blank">atharva-chavhanke</a>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="ci-icon">📷</div>
+            <div class="ci-text">
+              <div class="label">Instagram</div>
+              <a href="https://www.instagram.com/nivx2026" target="_blank">@nivx2026</a>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="ci-icon">▶</div>
+            <div class="ci-text">
+              <div class="label">YouTube</div>
+              <a href="https://youtube.com/@nivx-i9q" target="_blank">@nivx-i9q</a>
+            </div>
+          </div>
+        </div>
+        <div class="social-links" style="margin-top:1rem;">
+          <a href="https://www.linkedin.com/in/atharva-chavhanke" target="_blank" class="social-btn">in LinkedIn</a>
+          <a href="https://www.instagram.com/nivx2026" target="_blank" class="social-btn">📷 Instagram</a>
+          <a href="https://youtube.com/@nivx-i9q" target="_blank" class="social-btn">▶ YouTube</a>
+        </div>
+
+        <div style="margin-top:2rem;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;">
+          <h4 style="margin-bottom:1.25rem;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--white-muted);">Inquiry Types</h4>
+          <div style="display:flex;flex-direction:column;gap:0.75rem;">
+            <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.88rem;color:var(--white-dim);"><span>💼</span> Investor Relations & Funding</div>
+            <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.88rem;color:var(--white-dim);"><span>🤝</span> Technology & API Partnerships</div>
+            <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.88rem;color:var(--white-dim);"><span>📰</span> Media & Press Coverage</div>
+            <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.88rem;color:var(--white-dim);"><span>🏦</span> Financial Institution Partnerships</div>
+            <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.88rem;color:var(--white-dim);"><span>👥</span> Career & Team Building</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <h3 style="font-family:var(--font-display);font-size:1.4rem;font-weight:700;margin-bottom:1.75rem;">Send a Message</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" id="firstName" placeholder="Rahul">
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" id="lastName" placeholder="Sharma">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="contactEmail" placeholder="rahul@example.com">
+        </div>
+        <div class="form-group">
+          <label>Phone Number (Optional)</label>
+          <input type="tel" id="contactPhone" placeholder="+91 98765 43210">
+        </div>
+        <div class="form-group">
+          <label>Inquiry Type</label>
+          <select id="inquiryType">
+            <option value="">Select inquiry type</option>
+            <option value="investor">Investor Inquiry</option>
+            <option value="partnership">Partnership</option>
+            <option value="media">Media / Press</option>
+            <option value="career">Career / Team</option>
+            <option value="general">General Inquiry</option>
+            <option value="waitlist">Join Waitlist</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Organization (Optional)</label>
+          <input type="text" id="organization" placeholder="Your company or fund name">
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea id="message" placeholder="Tell us about yourself and how you'd like to connect with NIVX..."></textarea>
+        </div>
+        <button class="btn-primary" style="width:100%;justify-content:center;" onclick="submitContact()">
+          Send Message →
+        </button>
+        <div id="formSuccess">
+          ✓ Message sent successfully! We'll respond within 24 hours.
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+</main>
+
+<!-- ═══════════════════════════════════
+     FOOTER
+═══════════════════════════════════ -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="nav-logo" style="cursor:default;font-size:1.6rem;">NIVX</div>
+      <p>India's most trusted digital ownership ecosystem. Discover, verify, invest, learn, and grow — through one intelligent financial platform.</p>
+      <div class="footer-socials" style="margin-top:1.25rem;">
+        <a href="https://www.linkedin.com/in/atharva-chavhanke" target="_blank" title="LinkedIn">in</a>
+        <a href="https://www.instagram.com/nivx2026" target="_blank" title="Instagram">📷</a>
+        <a href="https://youtube.com/@nivx-i9q" target="_blank" title="YouTube">▶</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Platform</h5>
+      <a onclick="navigateTo('features')">Features</a>
+      <a onclick="navigateTo('ecosystem')">Ecosystem</a>
+      <a onclick="navigateTo('problem')">The Problem</a>
+      <a onclick="navigateTo('why')">Why NIVX</a>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <a onclick="navigateTo('about')">About</a>
+      <a onclick="navigateTo('vision')">Vision</a>
+      <a onclick="navigateTo('founder')">Founder</a>
+      <a onclick="navigateTo('contact')">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h5>Resources</h5>
+      <a onclick="navigateTo('faq')">FAQ</a>
+      <a href="mailto:atharvachavanke@gmail.com">Press Inquiries</a>
+      <a href="mailto:atharvachavanke@gmail.com">Investor Relations</a>
+      <a href="mailto:atharvachavanke@gmail.com">Partnerships</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 NIVX. All rights reserved. Building India's Financial Future.</span>
+    <span style="color:var(--white-muted);font-size:0.72rem;">Made in India 🇮🇳</span>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════
+     SCRIPTS
+═══════════════════════════════════ -->
+<script>
+// ─── NAVIGATION ───
+function navigateTo(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + page).classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  setTimeout(initFadeIns, 100);
+  if (page === 'faq') buildFaqList();
+}
+
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+// ─── SCROLL NAV ───
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('mainNav');
+  nav.classList.toggle('scrolled', window.scrollY > 30);
+});
+
+// ─── FADE-IN OBSERVER ───
+function initFadeIns() {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.page.active .fade-in').forEach(el => obs.observe(el));
+}
+setTimeout(initFadeIns, 200);
+
+// ─── HERO CHART ───
+function drawHeroChart() {
+  const canvas = document.getElementById('heroChart');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const w = canvas.parentElement.offsetWidth;
+  const h = 100;
+  canvas.width = w; canvas.height = h;
+
+  const data = [80, 95, 88, 110, 125, 118, 140, 135, 160, 155, 178, 195];
+  const min = Math.min(...data) - 10;
+  const max = Math.max(...data) + 10;
+  const pts = data.map((v,i) => ({ x: (i / (data.length-1)) * w, y: h - ((v - min) / (max - min)) * h }));
+
+  // area fill
+  const grad = ctx.createLinearGradient(0, 0, 0, h);
+  grad.addColorStop(0, 'rgba(30,86,200,0.3)');
+  grad.addColorStop(1, 'rgba(30,86,200,0)');
+  ctx.beginPath();
+  ctx.moveTo(pts[0].x, h);
+  ctx.lineTo(pts[0].x, pts[0].y);
+  pts.slice(1).forEach(p => ctx.lineTo(p.x, p.y));
+  ctx.lineTo(pts[pts.length-1].x, h);
+  ctx.closePath();
+  ctx.fillStyle = grad;
+  ctx.fill();
+
+  // line
+  ctx.beginPath();
+  ctx.moveTo(pts[0].x, pts[0].y);
+  pts.slice(1).forEach(p => ctx.lineTo(p.x, p.y));
+  ctx.strokeStyle = '#3d82ff';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // last point dot
+  const last = pts[pts.length-1];
+  ctx.beginPath();
+  ctx.arc(last.x, last.y, 4, 0, Math.PI*2);
+  ctx.fillStyle = '#3d82ff';
+  ctx.fill();
+}
+window.addEventListener('load', drawHeroChart);
+window.addEventListener('resize', drawHeroChart);
+
+// ─── WAITLIST ───
+function joinWaitlist() {
+  const email = document.getElementById('waitlistEmail').value;
+  if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
+  document.getElementById('waitlistMsg').style.display = 'block';
+  document.getElementById('waitlistEmail').value = '';
+}
+
+// ─── CONTACT FORM ───
+function submitContact() {
+  const req = ['firstName','lastName','contactEmail','inquiryType','message'];
+  let valid = true;
+  req.forEach(id => { const el = document.getElementById(id); if (!el.value.trim()) { el.style.borderColor='rgba(255,80,80,0.6)'; valid=false; } else { el.style.borderColor=''; } });
+  if (!valid) { alert('Please fill in all required fields.'); return; }
+  document.getElementById('formSuccess').style.display = 'block';
+  ['firstName','lastName','contactEmail','contactPhone','inquiryType','organization','message'].forEach(id => { document.getElementById(id).value = ''; });
+}
+
+// ─── FAQ ───
+const faqs = [
+  { q: "What is NIVX?", a: "NIVX is India's first Personal Wealth Operating System — a unified platform that brings together financial discovery, verification, investing, analytics, education, security, and community into one intelligent ecosystem.", cat: "platform" },
+  { q: "Who is NIVX built for?", a: "NIVX is designed for every Indian who wants to take control of their financial life — from first-time investors and young professionals to seasoned investors managing complex portfolios.", cat: "platform" },
+  { q: "When will NIVX launch?", a: "NIVX is currently in development with early access planned for select users. Join our waitlist to receive priority access and founding member benefits.", cat: "platform" },
+  { q: "Is NIVX regulated?", a: "NIVX is being built with full regulatory compliance across all relevant domains. We are in the process of obtaining registrations from SEBI, RBI, and other applicable regulatory bodies as the platform develops.", cat: "platform" },
+  { q: "How is NIVX different from Zerodha, Groww, or INDmoney?", a: "NIVX is not just a brokerage or investment tracker. It is a complete financial ecosystem combining discovery, AI intelligence, independent verification (Proof Mode), education, community, and security in one platform — which no existing player offers.", cat: "platform" },
+  { q: "What is Proof Mode?", a: "Proof Mode is NIVX's flagship verification system — the first of its kind in Indian fintech. It independently validates investment claims, advisor credentials, regulatory registrations, and historical returns before presenting any opportunity to users.", cat: "security" },
+  { q: "How does NIVX protect my financial data?", a: "NIVX uses AES-256 encryption for all data at rest, TLS 1.3 for data in transit, zero-knowledge architecture for the security vault, and regular third-party security audits. Your data is never sold or shared with advertisers.", cat: "security" },
+  { q: "What is the Security Vault?", a: "The Security Vault is an encrypted digital storage system for all your critical financial documents — demat statements, insurance policies, investment certificates, property papers, and more. Documents are encrypted, backed up, and accessible only to you.", cat: "security" },
+  { q: "Can advisors access my financial data?", a: "Only with your explicit, revocable permission. NIVX operates on a consent-first model — you control exactly who sees what, for how long, and can revoke access at any time.", cat: "security" },
+  { q: "Is my investment data safe with NIVX?", a: "Yes. NIVX follows bank-grade security standards with encryption at rest and in transit, multi-factor authentication, biometric access controls, and regular penetration testing by independent security firms.", cat: "security" },
+  { q: "What asset classes can I invest in through NIVX?", a: "NIVX will support mutual funds (direct plans), equities, government bonds, corporate bonds, IPOs, Sovereign Gold Bonds, REITs, InvITs, and select alternative investments — all through one unified interface.", cat: "investment" },
+  { q: "Will NIVX offer zero-commission mutual funds?", a: "Yes. NIVX will offer direct plan mutual funds — the same funds without distributor commissions — ensuring you keep more of your returns.", cat: "investment" },
+  { q: "How does the AI discover investment opportunities for me?", a: "The AI analyzes your financial profile, risk tolerance, investment goals, portfolio composition, market data, and behavioral patterns to surface opportunities that are relevant and suitable for your specific situation.", cat: "ai" },
+  { q: "Will NIVX replace my human financial advisor?", a: "No. NIVX is designed to make you a more informed investor and to provide AI-powered insights, but it is not a replacement for professional financial advice. Think of it as institutional-grade tools made available to every individual investor.", cat: "ai" },
+  { q: "How does the AI ensure its recommendations are unbiased?", a: "NIVX's AI operates purely on algorithmic logic without any sponsorship or commission relationships that could bias recommendations. There are no paid placements or featured products — recommendations are based entirely on data and your profile.", cat: "ai" },
+  { q: "What does the Education Hub include?", a: "The Education Hub contains structured learning paths from financial basics through advanced investing concepts, delivered contextually within your portfolio experience. Topics include mutual funds, equities, tax optimization, risk management, retirement planning, and more.", cat: "education" },
+  { q: "Is the education free?", a: "Core financial literacy content will be available to all NIVX users at no additional charge as part of the platform experience.", cat: "education" },
+  { q: "How is NIVX's education different from YouTube tutorials or blogs?", a: "NIVX education is contextual — it appears when you need it, related to what you're actually doing on the platform. It's structured, sequenced, and tied to your real portfolio rather than generic advice for anonymous audiences.", cat: "education" },
+  { q: "What is the NIVX Community?", a: "The NIVX Community is a verified investor network where participants' identities and track records are authenticated through Proof Mode. All insights and discussions are tied to real, auditable performance — eliminating anonymous noise and unverified tips.", cat: "platform" },
+  { q: "How are community members verified?", a: "Community members undergo identity verification and their investment claims are validated through Proof Mode. Reputation scores are tied to actual portfolio performance, creating accountability that traditional financial communities lack.", cat: "security" },
+  { q: "What analytics does NIVX provide?", a: "NIVX provides XIRR calculations, benchmark comparisons, risk-adjusted return analysis, asset allocation analytics, goal tracking progress, tax reports (capital gains, dividend income), and automated monthly performance summaries.", cat: "platform" },
+  { q: "How does NIVX handle taxes?", a: "NIVX automatically tracks your capital gains, dividend income, and STCG/LTCG positions across all asset classes and generates tax reports compatible with Indian income tax filing requirements.", cat: "investment" },
+  { q: "Will NIVX be available in regional languages?", a: "Yes. Regional language support is part of our core roadmap, beginning with Hindi and expanding to major regional languages as we scale, ensuring financial access is not limited by language barriers.", cat: "platform" },
+  { q: "Is there a mobile app?", a: "NIVX will launch with a fully-featured mobile app for both iOS and Android, designed to deliver the complete platform experience on mobile with an interface optimized for Indian users.", cat: "platform" },
+  { q: "How do I join the NIVX waitlist?", a: "You can join the waitlist by entering your email on our homepage or by reaching out to us directly at atharvachavanke@gmail.com. Early waitlist members receive priority access and founding member privileges.", cat: "platform" },
+  { q: "Is there a cost to use NIVX?", a: "NIVX's pricing model is being finalized, but the platform will offer a free tier with core features and premium tiers for advanced analytics, AI insights, and additional Proof Mode verifications.", cat: "platform" },
+  { q: "How can investors or partners reach NIVX?", a: "Please use the contact form on our Contact page or reach out directly to atharvachavanke@gmail.com for investor relations, partnership inquiries, or media requests.", cat: "platform" },
+];
+
+function buildFaqList(filter='all') {
+  const container = document.getElementById('faqList');
+  const filtered = filter === 'all' ? faqs : faqs.filter(f => f.cat === filter);
+  container.innerHTML = filtered.map((f,i) => `
+    <div class="faq-item" id="faq-${i}" onclick="toggleFaq('faq-${i}')">
+      <div class="faq-q">
+        <span>${f.q}</span>
+        <span class="faq-arrow">▾</span>
+      </div>
+      <div class="faq-a">${f.a}</div>
+    </div>
+  `).join('');
+}
+
+function toggleFaq(id) {
+  const item = document.getElementById(id);
+  item.classList.toggle('open');
+}
+
+function filterFaq(cat, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  buildFaqList(cat);
+}
+
+// Build FAQ on page load
+setTimeout(buildFaqList, 100);
+</script>
+
+</body>
+</html>
